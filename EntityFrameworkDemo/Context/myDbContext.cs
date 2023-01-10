@@ -1,4 +1,5 @@
-﻿using EntityFrameworkDemo.Models;
+﻿using EntityFrameworkDemo.Configs;
+using EntityFrameworkDemo.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace EntityFrameworkDemo.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=EntityDatabase123456789;Trusted_Connection=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfig());
         }
 
     }
